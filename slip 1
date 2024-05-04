@@ -1,0 +1,93 @@
+Q.1)  Write the JavaScript to take input as student’s age and check whether given student can be eligible for driving a bike or not
+<html>
+<head>
+<script>
+function verify(){
+var no;
+no=Number(document.getElementById("age").value);
+if(no<18)
+{
+alert("Under 18");
+}
+else
+{
+alert("You are Adult");
+}
+}
+</script>
+</head>
+<body>
+Enter your age:<input id="age"><br />
+<button onclick="verify()">Click me</button>
+</body>
+</html>
+
+ Q.2) Design a HTML form to accept a string. Write a PHP script for the following. a) Write a function to count the total number of Vowels from the script. b) Show the occurrences of each Vowel from the script.
+Html file
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Count Vowels</title>
+</head>
+<body>
+<h2>Enter a string to count vowels:</h2>
+<form action="count_vowels.php" method="post">
+<textarea name="input_string" rows="5" cols="50"></textarea><br><br>
+<input type="submit" value="Count Vowels">
+</form>
+</body>
+</html>
+
+Count_vowels.php
+<!DOCTYPE html
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vowel Count Results</title>
+</head>
+<body>
+<h2>Vowel Count Results</h2>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$input_string = $_POST["input_string"];
+function count_vowels($str) {
+$vowels = array('a', 'e', 'i', 'o', 'u');
+$count = 0;
+foreach (str_split($str) as $char) {
+if (in_array(strtolower($char), $vowels)) {
+$count++;
+}
+}
+return $count;
+}
+function count_vowel_occurrences($str) {
+$vowels = array('a', 'e', 'i', 'o', 'u');
+$occurrences = array_fill_keys($vowels, 0);
+foreach (str_split($str) as $char) {
+$char = strtolower($char);
+if (in_array($char, $vowels)) {
+$occurrences[$char]++;
+}
+}
+return $occurrences;
+}
+$total_vowels = count_vowels($input_string);
+$vowel_occurrences = count_vowel_occurrences($input_string);
+?>
+<p>Total number of vowels: <?php echo $total_vowels; ?></p>
+<p>Occurrences of each vowel:</p>
+<ul>
+<?php foreach ($vowel_occurrences as $vowel => $count): ?>
+<li><?php echo strtoupper($vowel) . ": " . $count; ?></li>
+<?php endforeach; ?>
+</ul>
+<?php
+} else {
+echo "<p>No input provided.</p>";
+}
+?>
+</body>
+</html>
