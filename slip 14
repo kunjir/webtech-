@@ -1,0 +1,91 @@
+Q.1) Write the JavaScript to accept the week day as number from user and display Monday to Sunday.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week Day Display</title>
+</head>
+<body>
+    <h1>Week Day Display</h1>
+    <label for="weekday">Enter the week day number (1-7):</label>
+    <input type="number" id="weekday" min="1" max="7">
+    <button onclick="displayDay()">Display Day</button>
+    <p id="result"></p>
+
+    <script>
+        function displayDay() {
+            // Get the input value from the user
+            var input = document.getElementById("weekday").value;
+            
+            // Convert the input to a number
+            var dayNumber = parseInt(input);
+
+            // Define an array to store the names of the days
+            var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            
+            // Check if the input is within the valid range (1-7)
+            if (dayNumber >= 1 && dayNumber <= 7) {
+                // Subtract 1 from the input to get the index of the corresponding day in the array
+                var dayIndex = dayNumber - 1;
+
+                // Get the name of the day using the index and display it
+                document.getElementById("result").textContent = "The corresponding day is: " + days[dayIndex];
+            } else {
+                // If the input is not within the valid range, display an error message
+                document.getElementById("result").textContent = "Please enter a valid week day number (1-7).";
+            }
+        }
+    </script>
+</body>
+</html>
+
+Q.2) Consider the following entities and their relationship.
+Student ( stud_id, name, class)
+Competition(c_no,c_name, type)
+a) Relationship between student and competition In many-many with attributes rank and year.
+b) Create a RDB in 3NF for above and solve the following.
+c) Using above database write a script in PHP to accept a competition from user and display
+information of student who has secured 1st rank in that competition.
+<?php
+// Establish a database connection
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "your_database";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Process the form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the competition selected by the user
+    $competition = $_POST["competition"];
+
+    // Query to retrieve information about the student who secured 1st rank in the selected competition
+    $sql = "SELECT Student.stud_id, Student.name, Student.class
+            FROM Student
+            INNER JOIN Student_Competition ON Student.stud_id = Student_Competition.stud_id
+            INNER JOIN Competition ON Student_Competition.c_no = Competition.c_no
+            WHERE Competition.c_name = '$competition' AND Student_Competition.rank = 1";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "Student ID: " . $row["stud_id"] . " - Name: " . $row["name"] . " - Class: " . $row["class"] . "<br>";
+        }
+    } else {
+        echo "No student secured 1st rank in the selected competition.";
+    }
+}
+
+// Close the database connection
+$conn->close();
+?>
