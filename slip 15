@@ -1,0 +1,70 @@
+Q.1) Write the JavaScript to WAP to check whether a given number is prime number.
+function isPrimeNumber(number) {
+    // Check if the number is less than 2
+    if (number < 2) {
+        return false;
+    }
+
+    // Loop through numbers from 2 to the square root of the given number
+    // If the given number is divisible by any number in this range, it's not a prime number
+    for (var i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+
+    // If the given number is not divisible by any number except 1 and itself, it's a prime number
+    return true;
+}
+
+// Test the function
+var numberToCheck = 11; // Change this to test different numbers
+if (isPrimeNumber(numberToCheck)) {
+    console.log(numberToCheck + " is a prime number.");
+} else {
+    console.log(numberToCheck + " is not a prime number.");
+}
+
+Q.2) Write a AJAX program to search Student name according to the character typed and display list using array.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Name Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Student Name Search</h1>
+    <label for="search">Search by Name:</label>
+    <input type="text" id="search" onkeyup="searchNames()">
+    <ul id="nameList"></ul>
+
+    <script>
+        function searchNames() {
+            var input = document.getElementById("search").value;
+            $.ajax({
+                type: 'GET',
+                url: 'search.php',
+                data: { input: input },
+                success: function(response) {
+                    $("#nameList").html(response);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+<?php
+$names = array("John", "Jane", "Alice", "Bob", "Charlie", "David", "Emma", "Frank", "Grace", "Henry");
+$input = $_GET['input'];
+$matches = array();
+foreach ($names as $name) {
+    if (strpos(strtolower($name), strtolower($input)) !== false) {
+        $matches[] = $name;
+    }
+}
+foreach ($matches as $match) {
+    echo "<li>$match</li>";
+}
+?>
