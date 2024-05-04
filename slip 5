@@ -1,0 +1,105 @@
+Q.1) Design a admission form. which should contains : text box, multiline text box, a table  which shows your academic record, radio button, check box, submit button etc.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form</title>
+</head>
+<body>
+    <h1>Admission Form</h1>
+    <form action="process_form.php" method="POST">
+        <label for="full_name">Full Name:</label><br>
+        <input type="text" id="full_name" name="full_name" required><br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="academic_record">Academic Record:</label><br>
+        <table>
+            <tr>
+                <th>Exam</th>
+                <th>Year</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <td>SSC</td>
+                <td><input type="text" name="ssc_year"></td>
+                <td><input type="text" name="ssc_grade"></td>
+            </tr>
+            <tr>
+                <td>HSC</td>
+                <td><input type="text" name="hsc_year"></td>
+                <td><input type="text" name="hsc_grade"></td>
+            </tr>
+        </table>
+        <br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br><br>
+
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I accept the terms and conditions</label><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+Q.2) Write a PHP script for the following: 
+a) Design a form to accept two numbers from the users. 
+b) Give option to choose an arithmetic operation (use Radio Button). 
+c) Display the result on next form. 
+d) Use concept of default parameter
+HTML File:
+
+<html>
+        <body bgcolor=pink >
+            <form action="ass1b1.php" method= "GET" >
+            Enter first number :  <input type=text name=a ><br>
+            Enter second number:  <input type=text name=b ><br>
+                                                                                                                             
+        Operation::
+                <input type=radio name=c value=1>Addition.<br>
+                <input type=radio name=c value=2>Subtraction.<br>
+                <input type=radio name=c value=3>Multiplication.<br>
+                <input type=radio name=c value=4>Division.<br>
+        <input type=submit value=ok>    <input type=reset value=clear>
+        </form>
+        </body>
+
+ </html>
+
+PHP Function:
+NOTE: PHP function is saved as "ass1b1.php"
+
+<?php
+$n1 = $_GET['a'];
+$n2 = $_GET['b'];
+$ch = $_GET['c'];
+
+        if($ch==1)
+        {
+            $c = $n1 + $n2;
+            echo"addition is: $c"; 
+        }
+        else if($ch==2)
+        {
+            $c = $n1 - $n2; 
+            echo"subtraction is: $c";
+        }
+        else if($ch==3)
+        {
+            $c = $n1 * $n2; 
+            echo"multiplication is: $c";
+        }
+        else if($ch==4)
+        {
+            $c = $n1 / $n2; 
+            echo"Division is: $c";
+        
+        }
+?>
