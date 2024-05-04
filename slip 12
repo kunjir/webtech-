@@ -1,0 +1,151 @@
+Q.1) Divide a screen in four equal part . Each frame shows : list of different activities conducted by your department.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities Conducted by Department</title>
+    <style>
+        /* Container for the four frames */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100vh; /* Make the container take up the full height of the viewport */
+        }
+
+        /* Style for each frame */
+        .frame {
+            flex: 1; /* Each frame takes up equal space */
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto; /* Add scrollbar if content exceeds frame height */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Frame 1 -->
+        <div class="frame">
+            <h2>Activities Conducted - Frame 1</h2>
+            <ul>
+                <li>Activity 1</li>
+                <li>Activity 2</li>
+                <li>Activity 3</li>
+                <!-- Add more activities as needed -->
+            </ul>
+        </div>
+
+        <!-- Frame 2 -->
+        <div class="frame">
+            <h2>Activities Conducted - Frame 2</h2>
+            <ul>
+                <li>Activity 4</li>
+                <li>Activity 5</li>
+                <li>Activity 6</li>
+                <!-- Add more activities as needed -->
+            </ul>
+        </div>
+
+        <!-- Frame 3 -->
+        <div class="frame">
+            <h2>Activities Conducted - Frame 3</h2>
+            <ul>
+                <li>Activity 7</li>
+                <li>Activity 8</li>
+                <li>Activity 9</li>
+                <!-- Add more activities as needed -->
+            </ul>
+        </div>
+
+        <!-- Frame 4 -->
+        <div class="frame">
+            <h2>Activities Conducted - Frame 4</h2>
+            <ul>
+                <li>Activity 10</li>
+                <li>Activity 11</li>
+                <li>Activity 12</li>
+                <!-- Add more activities as needed -->
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+Q.2) Write a PHP script to change the preference of your web page like font style, font, size,
+font color, background color using cookie.
+Display selected settings on next page and actual implementation (with new settings) on third
+page.
+<!-- settings.php - Page to set preferences -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Preferences</title>
+</head>
+<body>
+    <h1>Set Page Preferences</h1>
+    <form action="store_preferences.php" method="POST">
+        <label for="font_style">Font Style:</label>
+        <select name="font_style" id="font_style">
+            <option value="normal">Normal</option>
+            <option value="italic">Italic</option>
+            <option value="oblique">Oblique</option>
+        </select><br><br>
+
+        <label for="font_family">Font Family:</label>
+        <select name="font_family" id="font_family">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+        </select><br><br>
+
+        <label for="font_size">Font Size:</label>
+        <select name="font_size" id="font_size">
+            <option value="12px">12px</option>
+            <option value="14px">14px</option>
+            <option value="16px">16px</option>
+        </select><br><br>
+
+        <label for="font_color">Font Color:</label>
+        <input type="color" name="font_color" id="font_color"><br><br>
+
+        <label for="background_color">Background Color:</label>
+        <input type="color" name="background_color" id="background_color"><br><br>
+
+        <input type="submit" value="Save Preferences">
+    </form>
+</body>
+</html>
+<!-- store_preferences.php - Page to store preferences in cookies and redirect to display_preferences.php -->
+<?php
+// Store preferences in cookies
+setcookie('font_style', $_POST['font_style'], time() + (86400 * 30), "/");
+setcookie('font_family', $_POST['font_family'], time() + (86400 * 30), "/");
+setcookie('font_size', $_POST['font_size'], time() + (86400 * 30), "/");
+setcookie('font_color', $_POST['font_color'], time() + (86400 * 30), "/");
+setcookie('background_color', $_POST['background_color'], time() + (86400 * 30), "/");
+
+// Redirect to display preferences page
+header("Location: display_preferences.php");
+?>
+<!-- display_preferences.php - Page to display selected preferences -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Page Preferences</title>
+</head>
+<body>
+    <h1>Selected Page Preferences</h1>
+    <p>Font Style: <?php echo $_COOKIE['font_style']; ?></p>
+    <p>Font Family: <?php echo $_COOKIE['font_family']; ?></p>
+    <p>Font Size: <?php echo $_COOKIE['font_size']; ?></p>
+    <p>Font Color: <span style="color:<?php echo $_COOKIE['font_color']; ?>"><?php echo $_COOKIE['font_color']; ?></span></p>
+    <p>Background Color: <span style="background-color:<?php echo $_COOKIE['background_color']; ?>"><?php echo $_COOKIE['background_color']; ?></span></p>
+
+    <a href="index.php">Go to Home Page</a> <!-- Change index.php to your home page -->
+</body>
+</html>
