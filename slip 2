@@ -1,0 +1,61 @@
+Q.1) Write HTML code to display following output. 
+<html>
+<head> <title>Tea and Coffee</title> </head>
+<body>
+<ul type="square">
+<li>Tea
+<ul type="circle"><li>Hot Tea</li>
+<li>Black Tea</li>
+</ul>
+</li>
+<li>Coffee
+<ul type="circle"><li>Cold Coffee</li>
+<li>Hot Coffee</li>
+</ul>
+</li>
+</body>
+</html>
+
+Q.2) Write a PHP script to accept details of Employee (Name, Salary, Designation, Address) and display it on next page.
+<html>
+<body>
+<form action=slip15.php method=get>
+<table border=0 align=center>
+<tr><td>Emp Name</td><td><Input type=text name='ename'></td>
+<tr><td>Desg</td><td><Input type=text name='ed'></td></tr>
+<tr><td>Department</td><td>
+<select name="dep">
+<option value=gp.jpg>abc</option>
+<option value="deft">deft</option>
+<option value="xyzl">xyzl</option>
+</select>
+</td></tr>
+<tr><td>Gender</td><td><Input type=Radio name='gen' value=Female>Female
+<input type=radio name='gen' value=Male>Male
+</td></tr>
+<tr><td>Salary</td><td><Input type=text name='esal'></td></tr>
+<tr><td><input type=submit value=submit></td><td><input type="reset"
+value="RESET"></td></tr>
+</form>
+</body>
+</html>
+PHP PROGRAM-
+<?php
+$name=$_GET['ename'];
+$des=$_GET['ed'];
+$dep=$_GET['dep'];
+$g=$_GET['gen'];
+$salary=$_GET['esal'];
+echo "Name ".$name."
+";
+echo "Des ".$des."
+";
+echo "Dep ".$dep."
+";
+echo "G" .$g."
+";
+echo "Sal ".$salary."
+";
+?>
+
+
