@@ -1,0 +1,40 @@
+Q.1) Write a Calculator class that can accept two values, then add them, subtract them, multiply them together, or divide them on request. 
+?php
+
+        class Calculator {
+          private $_val1, $_val2;
+
+          public function __construct($val1, $val2) {
+            $this->_val1 = $val1;/*w  ww.  ja  v  a 2 s . c  om*/
+            $this->_val2 = $val2;
+          }
+
+          public function add() {
+            return $this->_val1 + $this->_val2;
+          }
+
+          public function subtract() {
+            return $this->_val1-$this->_val2;
+          }
+
+          public function multiply() {
+            return $this->_val1 * $this->_val2;
+          }
+
+          public function divide() {
+            return $this->_val1 / $this->_val2;
+          }
+        }
+
+        $calc = new Calculator(3, 4);
+        echo "3 + 4 =". $calc->add()."\n";
+        echo "3-4 =". $calc->subtract()."\n";
+        echo "3 * 4 =". $calc->multiply()."\n";
+        echo "3 / 4 =". $calc->divide()."\n";
+?>
+
+
+Q.2) Write external CSS program to display with background color sky blue with blue colored text.
+body{ 
+	background-color: skyblue; 
+	}
