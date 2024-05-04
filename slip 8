@@ -1,0 +1,120 @@
+Q.1) Write a PHP program to create a class temperature which contains data members as 
+Celsius and Fahrenheit . Create and Initialize all values of temperature object by using 
+parameterized constructor . Convert Celsius to Fahrenheit and Convert Fahrenheit to 
+Celsius using member functions. Display conversion on next page. 
+Html file
+<html>
+<head>
+<title>Temperature Conversion</title>
+</head>
+<body>
+<form action="conversion1.php" method="post">
+<label for="celsius">Enter Celsius temperature:</label>
+<input type="text" id="celsius" name="celsius"><br><br>
+<label for="fahrenheit">Enter Fahrenheit temperature:</label>
+<input type="text" id="fahrenheit" name="fahrenheit"><br><br>
+<input type="submit" value="Convert">
+</form>
+</body>
+</html>
+conversion1.php
+<?php
+class Temperature {
+public $celsius;
+public $fahrenheit;
+public function __construct($celsius, $fahrenheit) {
+$this->celsius = $celsius;
+$this->fahrenheit = $fahrenheit;
+}
+public function celsius_to_fahrenheit() {
+return ($this->celsius * 9/5) + 32;
+}
+public function fahrenheit_to_celsius() {
+return ($this->fahrenheit - 32) * 5/9;
+}
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$celsius = $_POST["celsius"];
+$fahrenheit = $_POST["fahrenheit"];
+$temperature = new Temperature($celsius, $fahrenheit);
+$fahrenheit_result = $temperature->celsius_to_fahrenheit();
+$celsius_result = $temperature->fahrenheit_to_celsius();
+echo "<h2>Conversion Results:</h2>";
+echo "<p>$celsius degrees Celsius is equal to $fahrenheit_result degrees Fahrenheit.</p>";
+echo "<p>$fahrenheit degrees Fahrenheit is equal to $celsius_result degrees Celsius.</p>";
+}
+?>
+
+Q.2) Write a script to create XML file ‘University.xml’. The element details of 
+‘University.xml’ Are as follows: 
+<Univ> 
+<Uname>------------</Uname> 
+<CITY>-----------------</CITY> 
+<Rank>----------------<</Rank> 
+</Univ> 
+a) Store the details of at least 3 universities. 
+b) Link the ‘University.xml’ file to CSS and get well formatted output as given below. 
+
+i) Uname : Color:black; 
+Font-family: copperplate G0thic Light; 
+Font size: 16pt; Font:Bold; ii) City and Rank Color:Yellow; 
+Font-family: Arial; 
+Font-size : 12pt; 
+Font: Bold;
+<?php
+// Create an array of universities with their details
+$universities = array(
+array(
+'Uname' => 'Harvard University',
+'City' => 'Cambridge',
+'Rank' => '1'
+),
+array(
+'Uname' => 'Stanford University',
+'City' => 'Stanford',
+'Rank' => '2'
+),
+array(
+'Uname' => 'Massachusetts Institute of Technology (MIT)',
+'City' => 'Cambridge',
+'Rank' => '3'
+)
+);
+// Create a new XML document
+$xml = new DOMDocument('1.0', 'UTF-8');
+// Create root element <Univ>
+$univElement = $xml->createElement('Univ');
+$xml->appendChild($univElement);
+// Loop through each university and create XML elements
+foreach ($universities as $university) {
+// Create <Uname> element and set its value
+$unameElement = $xml->createElement('Uname', $university['Uname']);
+$univElement->appendChild($unameElement);
+// Create <CITY> element and set its value
+$cityElement = $xml->createElement('CITY', $university['City']);
+$univElement->appendChild($cityElement);
+// Create <Rank> element and set its value
+$rankElement = $xml->createElement('Rank', $university['Rank']);
+$univElement->appendChild($rankElement);
+}
+// Save XML to file
+$xml->save('University.xml');
+// Link the XML file to CSS for formatting
+echo '<?xml-stylesheet type="text/css" href="university.css" ?>';
+echo 'XML file "University.xml" has been created successfully and linked to CSS.';
+?>
+/* CSS styles for University.xml */
+/* Uname style */
+Uname {
+color: black;
+font-family: "copperplate Gothic Light";
+font-size: 16pt;
+font-weight: bold;
+}
+/* City and Rank style */
+CITY, Rank {
+color: yellow;
+font-family: Arial;
+font-size: 12pt;
+font-weight: bold;
+}
